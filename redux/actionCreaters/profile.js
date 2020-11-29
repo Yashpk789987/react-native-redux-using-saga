@@ -1,0 +1,2 @@
+export const CALL_API = "CALL_API";
+export const SET_DATA_AFTER_CALL_API = "SET_DATA_AFTER_CALL_API";

@@ -4,14 +4,20 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 
 import { decrement, increment } from "../redux/actions/counter";
+import { callApi } from "../redux/actions/profile";
 
 function Main(props) {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 48, fontWeight: "bold" }}>{props.count}</Text>
+      <Text style={{ fontSize: 48, fontWeight: "bold" }}>{props.name}</Text>
       <StatusBar style="auto" />
       <Button onPress={() => props.increment(props.count)} title="increase" />
       <Button onPress={() => props.decrement(props.count)} title="decrease" />
+      <Button
+        onPress={() => props.refreshProfile("/api")}
+        title="refresh profile"
+      />
     </View>
   );
 }
@@ -27,6 +33,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     increment: (count) => dispatch(increment(count + 1)),
     decrement: (count) => dispatch(decrement(count - 1)),
+    refreshProfile: (url) => dispatch(callApi(url)),
   };
 };
 
